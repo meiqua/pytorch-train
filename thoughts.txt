@@ -1,0 +1,7 @@
+1. what does number mean here
+    RGB vector space, similar color in neighborhood
+    human eyes can't detect small changes in RGB 8bit
+    very interesting, RGB to gray has different weights
+
+    image size increase little, dim of problem increase a lot
+    this doesn't seem reasonable

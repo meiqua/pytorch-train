@@ -1,0 +1,55 @@
+1.
+cifar10 trained by pytorch
+se-resnet50
+
+default init weight
+no weight decay
+no data augmentation
+SGD momentum 0.9
+0.1 lr /10 /30epoch
+100 epoch
+
+val_loss vibration
+train_accuracy approaches 1, val_acc approaches 0.72
+
+2. add weight decay
+
+val_loss vibration last 1/3 part
+train_accuracy approaches 1, val_acc approaches 0.8
+
+3. senet 50 to 18
+
+val_loss vibration last 2/3 part
+train_accuracy approaches 1, val_acc approaches 0.8
+
+4. lr 0.1 to 0.01
+
+val_loss vibration almost all time
+train_accuracy approaches 1, val_acc approaches 0.74
+
+5. se-resnet18 to resnet34
+train_accuracy approaches 1, val_acc approaches 0.83
+
+6. resnet34 to resnet18 lr 0.01 to 0.1
+1 0.86 overfitting
+
+7. data augmentation
+ 0.93!!!
+
+8. for 128 batch-size, resnet50
+original script will consume more than 8G,
+after del loss manually, resnet50 consume 6G
+0.923
+
+resnext 0.9344
+
+resnext29_8_64 0.05 0.3/40epoch 0.9587
+
+9. resnet no relu test
+resnet50 0.9496
+
+10. cifar10 resnet18 256batch 0.05lr 0.2/30epoch
+resnet18 normal:
+    0.9327
+    no relu 0.9355
+    no relu bn 0.9354 almost same
