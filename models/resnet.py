@@ -1,7 +1,5 @@
 '''ResNet in PyTorch.
-
 For Pre-activation ResNet, see 'preact_resnet.py'.
-
 Reference:
 [1] Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
     Deep Residual Learning for Image Recognition. arXiv:1512.03385
@@ -31,10 +29,10 @@ class BasicBlock(nn.Module):
             )
 
     def forward(self, x):
-        out = ((self.conv1(x)))
-        out = (self.conv2(out))
+        out = F.relu(self.bn1(self.conv1(x)))
+        out = self.bn2(self.conv2(out))
         out += self.shortcut(x)
-        out = (out)
+        out = F.relu(out)
         return out
 
 
@@ -58,16 +56,16 @@ class Bottleneck(nn.Module):
             )
 
     def forward(self, x):
-        out = ((self.conv1(x)))
-        out = ((self.conv2(out)))
-        out = (self.conv3(out))
+        out = F.relu(self.bn1(self.conv1(x)))
+        out = F.relu(self.bn2(self.conv2(out)))
+        out = self.bn3(self.conv3(out))
         out += self.shortcut(x)
-        out = (out)
+        out = F.relu(out)
         return out
 
 
 class ResNet(nn.Module):
-    def __init__(self, block, num_blocks, num_classes=100):
+    def __init__(self, block, num_blocks, num_classes=10):
         super(ResNet, self).__init__()
         self.in_planes = 64
 
@@ -88,7 +86,7 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
-        out = ((self.conv1(x)))
+        out = F.relu(self.bn1(self.conv1(x)))
         out = self.layer1(out)
         out = self.layer2(out)
         out = self.layer3(out)
